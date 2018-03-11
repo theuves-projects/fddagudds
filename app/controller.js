@@ -5,10 +5,11 @@
 
   Controller.$inject = [
     "readFile",
-    "getData"
+    "getData",
+    "$scope"
   ];
 
-  function Controller(readFile, getData) {
+  function Controller(readFile, getData, $scope) {
     const vm = this;
 
     vm.class = "";
@@ -24,8 +25,10 @@
 
       if (file) {
         if (/\.xls$/.test(file.name)) {
-          readFile(file, function (json) {
-            console.log(getData(json));
+          readFile(file, json => {
+            $scope.$apply($ => {
+              $.vm.data = getData(json);
+            });
           });
         } else {
           alert("Formato inválido!");

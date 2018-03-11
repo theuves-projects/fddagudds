@@ -1,7 +1,18 @@
 (function() {
   angular
     .module("app")
-    .directive("aguDragAndDrop", aguDragAndDrop);
+    .directive("aguHtml", aguHtml)
+    .directive("aguDragAndDrop", aguDragAndDrop)
+    .directive("aguClipboard", aguClipboard);
+
+  function aguHtml() {
+    return {
+      restrict: "E",
+      link: (scope, element, attrs) => {
+        element.html(attrs.value);
+      }
+    }
+  }
 
   function aguDragAndDrop() {
     return {
@@ -27,6 +38,36 @@
           scope.aguDrop(event);
           scope.$apply();
         });
+      }
+    };
+  }
+
+  function aguClipboard() {
+    return {
+      restrict: "A",
+      scope: {
+        aguClipboardText: "@"
+      },
+      link: (scope, element, attrs) => {
+        new ClipboardJS(element[0]);
+
+        scope.$watch("aguClipboardText", value => {
+          element[0].setAttribute("data-clipboard-text", value);
+        });
+
+        if (attrs.aguClipboardMessage) {
+          element.on("click", () => {
+            alert(attrs.aguClipboardMessage);
+          });
+        }
+
+        if (attrs.aguClipboardNewColor) {
+          element.on("click", () => {
+            element.css({
+              color: attrs.aguClipboardNewColor
+            });
+          });
+        }
       }
     };
   }

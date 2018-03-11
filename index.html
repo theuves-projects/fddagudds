@@ -9,20 +9,102 @@
     ng-app="app"
     ng-controller="Controller as vm">
 
-    <!-- <agu-drag-and-drop
+    <agu-drag-and-drop
       ng-show="vm.showDd"
       ng-class="vm.class"
       agu-drop="vm.drop"
       agu-dragover="vm.dragover"
       agu-dragleave="vm.dragleave"
       class="drag-and-drop">
-    </agu-drag-and-drop> -->
+    </agu-drag-and-drop>
+
+    <div
+      class="container"
+      ng-hide="vm.showDd">
+
+      <div class="inputs">
+        <input
+          ng-model="vm.fStart"
+          class="input"
+          type="number"
+          placeholder="INÍCIO...">
+
+        <span class="text">ATÉ</span>
+
+        <input
+          ng-model="vm.fEnd"
+          class="input"
+          type="number"
+          placeholder="FIM...">
+      </div>
+      <table
+        ng-if="vm.data"
+        class="table">
+
+        <thead>
+          <tr>
+            <th>DOCUMENTO</th>
+            <th>
+              Nº DO PROCESSO
+              <button
+                agu-clipboard
+                agu-clipboard-text="{{vm.data | pesquisar:vm.fStart:vm.fEnd | processos}}"
+                agu-clipboard-message="Copiado!"
+                class="copy-all">COPIAR BLOCO</button>
+            </th>
+            <th>DATA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in vm.data | pesquisar:vm.fStart:vm.fEnd">
+            <td>
+              <div class="value">
+                <p class="value-item">
+                  <span class="tag">{{doc.documento}}</span>
+                </p>
+                <button
+                  agu-clipboard
+                  agu-clipboard-text="{{doc.documento}}"
+                  agu-clipboard-new-color="#d35400"
+                  class="copy">📋</button>
+              </div>
+            </td>
+            <td>
+              <div class="value">
+                <p class="value-item">
+                  <agu-html value="{{doc.processo_judicial}}"></agu-html>
+                </p>
+                <button
+                  agu-clipboard
+                  agu-clipboard-text="{{doc.processo_judicial | numbers}}"
+                  agu-clipboard-new-color="#d35400"
+                  class="copy">📋</button>
+              </div>
+            </td>
+            <td>
+              <div class="value">
+                <p class="value-item">{{doc.dtremessa}}</p>
+                <button
+                  agu-clipboard
+                  agu-clipboard-text="{{doc.dtremessa}}"
+                  agu-clipboard-new-color="#d35400"
+                  class="copy">📋</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <script src="js/xls.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
     <script src="js/angular.min.js"></script>
+
+    <!-- angular -->
     <script src="app/module.js"></script>
     <script src="app/factories.js"></script>
     <script src="app/directives.js"></script>
     <script src="app/controller.js"></script>
+    <script src="app/filters.js"></script>
   </body>
 </html>

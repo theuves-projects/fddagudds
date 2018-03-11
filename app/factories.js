@@ -10,7 +10,7 @@
 
       render.readAsBinaryString(file);
 
-      render.onload = (data) => {
+      render.onload = data => {
         const string = data.currentTarget.result;
         const xls = XLS.read(string, {type: "binary"});
         const name = xls.SheetNames[0];
