@@ -50,10 +50,11 @@ body {
   background-color: #9ac9e9;
 }
 .container {
-  width: 800px;
+  width: 950px;
   height: 100%;
   margin: 0 auto;
   padding: 20px;
+  padding-bottom: 0px;
   border: solid 2px #ddd;
   overflow-y: auto;
   background-color: white;
@@ -93,6 +94,7 @@ body {
 }
 .table {
   width: 100%;
+  margin-bottom: 20px;
   border-collapse: collapse;
 }
 .table * {
@@ -112,7 +114,9 @@ body {
   flex: 1;
 }
 .copy {
-  font-size: 12px;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: bold;
   padding: 2px 4px;
   color: #2c3e50;
 }
@@ -120,5 +124,6 @@ body {
   padding: 0 3px;
   font-size: 8px;
   font-style: italic;
+  font-weight: bold;
   color: #2c3e50;
 }

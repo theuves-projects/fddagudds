@@ -51,8 +51,10 @@
       link: (scope, element, attrs) => {
         new ClipboardJS(element[0]);
 
+        element.attr("title", "Copiar para a área de transferêcia.");
+
         scope.$watch("aguClipboardText", value => {
-          element[0].setAttribute("data-clipboard-text", value);
+          element.attr("data-clipboard-text", value);
         });
 
         if (attrs.aguClipboardMessage) {
