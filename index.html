@@ -5,10 +5,24 @@
     <title>Filtro de Dados - AGU Dourados</title>
     <link rel="stylesheet" href="index.css">
   </head>
-  <body>
-    <div id="drop" draggable="true"></div>
+  <body
+    ng-app="app"
+    ng-controller="Controller as vm">
 
-    <script src="index.js"></script>
+    <!-- <agu-drag-and-drop
+      ng-show="vm.showDd"
+      ng-class="vm.class"
+      agu-drop="vm.drop"
+      agu-dragover="vm.dragover"
+      agu-dragleave="vm.dragleave"
+      class="drag-and-drop">
+    </agu-drag-and-drop> -->
+
     <script src="js/xls.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="app/module.js"></script>
+    <script src="app/factories.js"></script>
+    <script src="app/directives.js"></script>
+    <script src="app/controller.js"></script>
   </body>
 </html>
