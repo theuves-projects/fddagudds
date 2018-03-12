@@ -6,14 +6,30 @@
   Controller.$inject = [
     "readFile",
     "getData",
-    "$scope"
+    "$scope",
+    "$window"
   ];
 
-  function Controller(readFile, getData, $scope) {
+  function Controller(readFile, getData, $scope, $window) {
     const vm = this;
+    ////////////////
+
+    vm.tags = {
+      "ATO ORDINATÓRIO": true,
+      "SENTENÇA": true,
+      "DECISÃO": true,
+      "DESPACHO": true,
+      "DECISÃO JEF": true,
+      "DESPACHO JEF": true,
+      "CITAÇÃO": true,
+      "CITAÇÃO COM AUDIÊNCIA": true,
+      "OUTROS": true
+    };
 
     vm.class = "";
+
     vm.showDd = true;
+
     vm.dragover = () => {
       vm.class = "actived";
     };
@@ -27,12 +43,12 @@
         if (/\.xls$/.test(file.name)) {
           readFile(file, json => {
             $scope.$apply($ => {
-              $.vm.data = getData(json);
+              $.vm.data = getData(json) || [];
               vm.showDd = false;
             });
           });
         } else {
-          alert("Formato inválido!");
+          $window.alert("Formato inválido!");
         }
       }
 

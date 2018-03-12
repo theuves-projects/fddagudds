@@ -24,10 +24,6 @@
 
   function getData() {
     return function (data) {
-      if (data.every(row => !row.documento || !row.processo_judicial || !row.dtremessa)) {
-        alert("Planilha inválida!");
-      }
-
       function format(number) {
         const re = /(\d{7})(\d{2})(\d{4})(\d{3})(\d{4})/;
         const mask = "$1-$2.$3.$4.$5";
@@ -43,20 +39,34 @@
       };
 
       function getDate(date) {
-        return date.replace(/(\d+)\/(\d+)\/(\d+).*/, function (_, dd, mm, yy) {
+        return date.replace(/(\d+)\/(\d+)\/(\d+).*/, function (_, mm, dd, yy) {
           dd = dd.padStart(2, "0");
           mm = mm.padStart(2, "0");
           yy = yy.padStart(2, "0");
 
-          return `${dd}/${mm}/${yy}`;
+          return `${dd}-${mm}-20${yy}`;
         });
       }
 
+      const reDoc = /\b(documento|etiqueta)\b/i;
+      const reProcesso = /\bprocesso/i;
+      const reData = /(data.*remessa|dtremessa)/i;
+      const nameDoc = Object.keys(data[0]).find(key => reDoc.test(key));
+      const nameProcesso = Object.keys(data[0]).find(key => reProcesso.test(key));
+      const nameData = Object.keys(data[0]).find(key => reData.test(key));
+
       return data.map(row => {
+        if (!row[nameDoc] || !row[nameProcesso] || !row[nameData]) {
+          alert("Planilha inválida!");
+
+          throw new Error("Planilha inválida!");
+        }
+
         return {
-          documento: row.documento,
-          processo_judicial: highlight(format(row.processo_judicial)),
-          dtremessa: getDate(row.dtremessa)
+          pronto: false,
+          documento: row[nameDoc],
+          processo: highlight(format(row[nameProcesso])),
+          data: getDate(row[nameData])
         };
       });
     };

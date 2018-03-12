@@ -17,6 +17,7 @@
   outline: none;
   box-shadow: 0 0 2px var(--special-color);
 }
+
 html,
 body,
 .drag-and-drop {
@@ -27,6 +28,10 @@ body {
   padding: 30px;
   background-color: #eee;
 }
+
+/**
+ * drag and drop
+ */
 .drag-and-drop {
   display: block;
   position: relative;
@@ -49,8 +54,12 @@ body {
 .drag-and-drop.actived {
   background-color: #9ac9e9;
 }
+
+/**
+ * container
+ */
 .container {
-  width: 950px;
+  width: 990px;
   height: 100%;
   margin: 0 auto;
   padding: 20px;
@@ -59,23 +68,63 @@ body {
   overflow-y: auto;
   background-color: white;
 }
-.hi {
-  padding: 0 3px;
-  font-weight: bold;
-  color: red;
+
+.disabled {
+  text-decoration: line-through;
   background-color: #eee;
 }
+
+/**
+ * tags
+ */
+.tags {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #eee;
+}
+.tags * {
+  user-select: none;
+}
+.tags *::selection {
+  color: black;
+  background-color: none;
+}
+.tags *::-moz-selection {
+  color: black;
+  background-color: none;
+}
+.tags-tag {
+  flex: auto;
+  font-size: 10px;
+}
+
+/**
+ * tag
+ */
 .tag {
   padding: 2px 4px;
   user-select: all;
   font-family: monospace;
   background-color: #ffff9d;
 }
+
+/**
+ * highlight
+ */
+.hi {
+  padding: 0 3px;
+  font-weight: bold;
+  color: red;
+  background-color: #eee;
+}
+
+/**
+ * inputs
+ */
 .inputs {
   display: flex;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: solid 1px #eee;
+  margin-bottom: 10px;
   align-items: baseline;
 }
 .inputs * {
@@ -92,6 +141,10 @@ body {
 .inputs .text {
   margin: 0 15px;
 }
+
+/**
+ * table
+ */
 .table {
   width: 100%;
   margin-bottom: 20px;
@@ -113,6 +166,13 @@ body {
 .table .value-item {
   flex: 1;
 }
+.table tr:not(.disabled):not(:first-child):hover {
+  background-color: #f4f4f4;
+}
+
+/**
+ * copy buttons
+ */
 .copy {
   font-size: 10px;
   font-style: italic;
@@ -126,4 +186,17 @@ body {
   font-style: italic;
   font-weight: bold;
   color: #2c3e50;
+}
+
+/**
+ * cursors
+ */
+.cur-help {
+  cursor: help;
+}
+
+.not-found {
+  padding: 20px 0 !important;
+  text-align: center;
+  color: red;
 }
