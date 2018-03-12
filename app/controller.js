@@ -28,6 +28,7 @@
           readFile(file, json => {
             $scope.$apply($ => {
               $.vm.data = getData(json);
+              vm.showDd = false;
             });
           });
         } else {
@@ -35,7 +36,7 @@
         }
       }
 
-      vm.showDd = false;
+      vm.class = undefined;
     };
   }
 })();
