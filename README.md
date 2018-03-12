@@ -2,7 +2,7 @@
 
 > Filtro de Dados - AGU Dourados
 
-Uma aplicação simples que deve filtrar e melhorar dados necessários para os usuários extraídos de uma planilha do *[Microsoft Office Excel](https://goo.gl/NNxcc6) 97-200* `*.xls` (que provavelmente foi gerado automaticamente por algum outro sistema a partir de um arquivo `*.csv`) que possui várias colunas com informações inúteis.
+Uma aplicação simples que deve filtrar e melhorar dados necessários para os usuários de uma planilha do *[Microsoft Office Excel](https://goo.gl/NNxcc6) 97-200* `*.xls` (que provavelmente foi gerado automaticamente por algum outro sistema a partir de um arquivo `*.csv`) que possui várias colunas com informações inúteis.
 
 Construído com:
 
