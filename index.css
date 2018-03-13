@@ -98,6 +98,9 @@ body {
   flex: auto;
   font-size: 10px;
 }
+.tags-tag:hover {
+  color: #333;
+}
 
 /**
  * tag
