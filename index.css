@@ -172,13 +172,20 @@ body {
 .table tbody tr:not(.disabled):hover {
   background-color: #f8f8f8;
 }
+.table .not-found {
+  padding: 20px 0 !important;
+  text-align: center;
+  color: red;
+}
+.table .checkbox {
+  text-align: center;
+}
 
 /**
  * copy buttons
  */
 .copy {
   font-size: 10px;
-  font-style: italic;
   font-weight: bold;
   padding: 2px 4px;
   color: #2c3e50;
@@ -186,7 +193,6 @@ body {
 .copy-all {
   padding: 0 3px;
   font-size: 8px;
-  font-style: italic;
   font-weight: bold;
   color: #2c3e50;
 }
@@ -196,10 +202,4 @@ body {
  */
 .cur-help {
   cursor: help;
-}
-
-.not-found {
-  padding: 20px 0 !important;
-  text-align: center;
-  color: red;
 }

@@ -106,7 +106,7 @@
             ng-repeat="doc in vm.data | pesquisar:vm.fStart:vm.fEnd:vm.tags"
             ng-class="{'disabled': doc.pronto}">
 
-            <td>
+            <td class="checkbox">
               <input type="checkbox" ng-model="doc.pronto">
             </td>
             <td>
@@ -118,7 +118,7 @@
                   agu-clipboard
                   agu-clipboard-text="{{doc.documento}}"
                   agu-clipboard-new-color="#d35400"
-                  class="copy">📋 COPIAR</button>
+                  class="copy">COPIAR</button>
               </div>
             </td>
             <td>
@@ -130,7 +130,7 @@
                   agu-clipboard
                   agu-clipboard-text="{{doc.processo | numbers}}"
                   agu-clipboard-new-color="#d35400"
-                  class="copy">📋 COPIAR</button>
+                  class="copy">COPIAR</button>
               </div>
             </td>
             <td>
@@ -140,7 +140,7 @@
                   agu-clipboard
                   agu-clipboard-text="{{doc.data}}"
                   agu-clipboard-new-color="#d35400"
-                  class="copy">📋 COPIAR</button>
+                  class="copy">COPIAR</button>
               </div>
             </td>
           </tr>
