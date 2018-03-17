@@ -1,0 +1,28 @@
+{
+  "name": "fddagudds",
+  "version": "1.0.0",
+  "description": "> Filtro de Dados - AGU Dourados",
+  "main": "webpack.config.js",
+  "dependencies": {},
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-loader": "^0.5.5",
+    "style-loader": "^0.20.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theuves/fddagudds.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theuves/fddagudds/issues"
+  },
+  "homepage": "https://github.com/theuves/fddagudds#readme"
+}

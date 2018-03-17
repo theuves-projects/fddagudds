@@ -9,154 +9,23 @@
     ng-app="app"
     ng-controller="Controller as vm">
 
-    <agu-drag-and-drop
-      ng-show="vm.showDd"
-      ng-class="vm.class"
-      agu-drop="vm.drop"
-      agu-dragover="vm.dragover"
-      agu-dragleave="vm.dragleave"
-      class="drag-and-drop">
-    </agu-drag-and-drop>
-
-    <div
-      class="container"
-      ng-hide="vm.showDd">
-
-      <div class="inputs">
-        <input
-          ng-model="vm.fStart"
-          class="input"
-          type="number"
-          placeholder="INÍCIO...">
-
-        <span class="text">ATÉ</span>
-
-        <input
-          ng-model="vm.fEnd"
-          class="input"
-          type="number"
-          placeholder="FIM...">
-      </div>
-
-      <div class="tags">
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['ATO ORDINATÓRIO']">
-          ATO ORDINATÓRIO
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['SENTENÇA']">
-          SENTENÇA
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['DECISÃO']">
-          DECISÃO
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['DECISÃO JEF']">
-          DECISÃO JEF
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['DESPACHO']">
-          DESPACHO
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['DESPACHO JEF']">
-          DESPACHO JEF
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['CITAÇÃO']">
-          CITAÇÃO
-        </label>
-        <label class="tags-tag">
-          <input type="checkbox" ng-model="vm.tags['CITAÇÃO COM AUDIÊNCIA']">
-          CITAÇÃO COM AUDIÊNCIA
-        </label>
-        <label class="tags-tag cur-help" title="Etiquetas não identificadas.">
-          <input type="checkbox" ng-model="vm.tags['OUTROS']">
-          <i>OUTROS</i>
-        </label>
-      </div>
-
-      <table
-        ng-if="vm.data"
-        class="table">
-
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>DOC./ETIQUETA</th>
-            <th>
-              Nº DO PROCESSO
-              <button
-                agu-clipboard
-                agu-clipboard-text="{{vm.data | pesquisar:vm.fStart:vm.fEnd:vm.tags | processos}}"
-                agu-clipboard-message="Copiado!"
-                class="copy-all">COPIAR BLOCO</button>
-            </th>
-            <th>DATA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-if="vm.data | pesquisar:vm.fStart:vm.fEnd:vm.tags | isEmpty">
-            <td colspan="4" class="not-found">
-              <p>NADA ENCONTRADO!</p>
-            </td>
-          </tr>
-          <tr
-            ng-repeat="doc in vm.data | pesquisar:vm.fStart:vm.fEnd:vm.tags"
-            ng-class="{'disabled': doc.pronto}">
-
-            <td class="checkbox">
-              <input type="checkbox" ng-model="doc.pronto">
-            </td>
-            <td>
-              <div class="value">
-                <p class="value-item">
-                  <span class="tag">{{doc.documento}}</span>
-                </p>
-                <button
-                  agu-clipboard
-                  agu-clipboard-text="{{doc.documento}}"
-                  agu-clipboard-new-color="#d35400"
-                  class="copy">COPIAR</button>
-              </div>
-            </td>
-            <td>
-              <div class="value">
-                <p class="value-item">
-                  <agu-html value="{{doc.processo}}"></agu-html>
-                </p>
-                <button
-                  agu-clipboard
-                  agu-clipboard-text="{{doc.processo | numbers}}"
-                  agu-clipboard-new-color="#d35400"
-                  class="copy">COPIAR</button>
-              </div>
-            </td>
-            <td>
-              <div class="value">
-                <p class="value-item">{{doc.data}}</p>
-                <button
-                  agu-clipboard
-                  agu-clipboard-text="{{doc.data}}"
-                  agu-clipboard-new-color="#d35400"
-                  class="copy">COPIAR</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div id="main" ng-cloak>
+      <agu-drag-and-drop
+        ng-if="vm.isHome"
+        agu-on-drop="vm.onDrop"
+        class="drag-and-drop">
+      </agu-drag-and-drop>
+  
+      <agu-data
+        ng-if="!vm.isHome"
+        agu-data="vm.data">
+      </agu-data>
     </div>
 
-    <script src="js/xls.min.js"></script>
-    <script src="js/clipboard.min.js"></script>
-    <script src="js/angular.min.js"></script>
+    <div class="loader">
+      <div class="loader-icon"></div>
+    </div>
 
-    <!-- angular -->
-    <script src="app/module.js"></script>
-    <script src="app/factories.js"></script>
-    <script src="app/directives.js"></script>
-    <script src="app/controller.js"></script>
-    <script src="app/filters.js"></script>
+    <script src="./build.js"></script>
   </body>
 </html>

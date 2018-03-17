@@ -1,58 +1,41 @@
-(function() {
-  angular
-    .module("app")
-    .controller("Controller", Controller);
+"use strict";
 
-  Controller.$inject = [
-    "readFile",
-    "getData",
-    "$scope",
-    "$window"
-  ];
+import angular from "angular";
 
-  function Controller(readFile, getData, $scope, $window) {
-    const vm = this;
-    ////////////////
+angular
+  .module("app")
+  .controller("Controller", Controller);
 
-    vm.tags = {
-      "ATO ORDINATÓRIO": true,
-      "SENTENÇA": true,
-      "DECISÃO": true,
-      "DESPACHO": true,
-      "DECISÃO JEF": true,
-      "DESPACHO JEF": true,
-      "CITAÇÃO": true,
-      "CITAÇÃO COM AUDIÊNCIA": true,
-      "OUTROS": true
-    };
+Controller.$inject = [
+  "$scope",
+  "$window",
+  "readFile",
+  "getData"
+];
 
-    vm.class = "";
+function Controller(
+  $scope,
+  $window,
+  readFile,
+  getData
+) {
+  const vm = this;
+  ////////////////
 
-    vm.showDd = true;
+  vm.isHome = true;
 
-    vm.dragover = () => {
-      vm.class = "actived";
-    };
-    vm.dragleave = () => {
-      vm.class = undefined;
-    };
-    vm.drop = event => {
-      const file = event.dataTransfer.files[0];
+  vm.onDrop = event => {
+    const file = event.dataTransfer.files[0];
 
-      if (file) {
-        if (/\.xls$/.test(file.name)) {
-          readFile(file, json => {
-            $scope.$apply($ => {
-              $.vm.data = getData(json) || [];
-              vm.showDd = false;
-            });
-          });
-        } else {
-          $window.alert("Formato inválido!");
-        }
-      }
+    if (!file) return undefined;
+    if (!/\.xls$/.test(file.name))
+      return $window.alert("Formato inválido!");
 
-      vm.class = undefined;
-    };
-  }
-})();
+    readFile(file, json => {
+      $scope.$apply($ => {
+        $.vm.data = getData(json) || [];
+        vm.isHome = !vm.isHome;
+      });
+    });
+  };
+}
