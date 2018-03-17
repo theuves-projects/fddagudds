@@ -1,8 +1,12 @@
 "use strict";
 
-import XLS from "xlsx";
+readFile.$inject = [
+  "XLS"
+];
 
-function readFile() {
+function readFile(
+  XLS
+) {
   return function (file, cb) {
     const render = new FileReader();
 

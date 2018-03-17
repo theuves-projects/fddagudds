@@ -255,3 +255,6 @@ body {
 .cur-help {
   cursor: help;
 }
+.cur-progress {
+  cursor: progress;
+}

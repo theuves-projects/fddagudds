@@ -1,13 +1,13 @@
 "use strict";
 
-import ClipboardJS from "clipboard";
-
 aguClipboard.$inject = [
-  "$window"
+  "$window",
+  "ClipboardJS"
 ];
 
 function aguClipboard(
-  $window
+  $window,
+  ClipboardJS
 ) {
   return {
     restrict: "A",
