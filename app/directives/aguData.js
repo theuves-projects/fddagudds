@@ -2,7 +2,7 @@
 
 import template from "./templates/aguData.html";
 
-export default function () {
+function aguData() {
   return {
     restrict: "E",
     scope: {
@@ -29,3 +29,5 @@ export default function () {
     controllerAs: "vm"
   };
 }
+
+export default aguData;

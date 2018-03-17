@@ -65,6 +65,10 @@ body {
 /**
  * drag and drop
  */
+@keyframes scale {
+  from {transform: scale(.5);}
+  to {transform: scale(1);}
+}
 .drag-and-drop {
   display: block;
   position: relative;
@@ -72,9 +76,9 @@ body {
   outline-offset: -30px;
   background-color: #b3d6ef;
   transition: .15s all;
+  animation: scale .15s;
 }
-.drag-and-drop::after {
-  content: "ARRASTE E SOLTE A PLANILHA AQUI.";
+.drag-and-drop .text {
   color: #3693d4;
   font-size: 24px;
   font-weight: 400;

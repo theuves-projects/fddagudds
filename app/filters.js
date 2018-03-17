@@ -4,13 +4,13 @@ import angular from "angular";
 
 // filters
 import isEmpty from "./filters/isEmpty.js";
-import numbers from "./filters/numbers.js";
-import processos from "./filters/processos.js";
+import onlyNumbers from "./filters/onlyNumbers.js";
+import getBlock from "./filters/getBlock.js";
 import search from "./filters/search.js";
 
 angular
   .module("app")
+  .filter("getBlock", getBlock)
   .filter("isEmpty", isEmpty)
-  .filter("numbers", numbers)
-  .filter("processos", processos)
+  .filter("onlyNumbers", onlyNumbers)
   .filter("search", search);

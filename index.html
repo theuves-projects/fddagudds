@@ -8,11 +8,13 @@
   <body
     ng-app="app"
     ng-controller="Controller as vm">
-
     <div id="main" ng-cloak>
       <agu-drag-and-drop
         ng-if="vm.isHome"
         agu-on-drop="vm.onDrop"
+        agu-msg-default="ARRASTE A PLANILHA AQUI..."
+        agu-msg-dragover="SOLTE A PLANILHA AQUI..."
+        agu-msg-on-drop="AGUARDE..."
         class="drag-and-drop">
       </agu-drag-and-drop>
   

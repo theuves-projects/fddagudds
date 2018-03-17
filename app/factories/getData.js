@@ -6,6 +6,10 @@ getData.$inject = [
 
 function getData($window) {
   return function (data) {
+
+    /**
+     * formatar o número de um processo
+     */
     function format(number) {
       const re = /(\d{7})(\d{2})(\d{4})(\d{3})(\d{4})/;
       const mask = "$1-$2.$3.$4.$5";
@@ -13,6 +17,9 @@ function getData($window) {
       return number.replace(re, mask);
     }
 
+    /**
+     * destacar os números que serão importantes
+     */
     function highlight(number) {
       const re = /^(\d{5})(\d{2})/;
       const mask = `$1<span class="hi">$2</span>`;
@@ -20,6 +27,9 @@ function getData($window) {
       return number.replace(re, mask);
     };
 
+    /**
+     * extrair somente a data duma string
+     */
     function getDate(date) {
       return date.replace(/(\d+)\/(\d+)\/(\d+).*/, function (_, mm, dd, yy) {
         dd = dd.padStart(2, "0");
@@ -30,12 +40,19 @@ function getData($window) {
       });
     }
 
-    function invertDate(date) {
-      return date.replace(/^(\d+)-(\d+)-(\d+)$/, "$2-$1-$3");
-    }
-
+    /**
+     * aumentar uma data a partir de segundos
+     */
     function addSeconds(date, seconds) {
-      const dt = new Date((new Date(invertDate(date))).getTime() + seconds);
+
+      /**
+       * isso:
+       *  - coverte para o formato "mm/dd/aaaa"
+       *  - usa "/", pois o Mozilla Firefox não entende "-"
+       */
+      const normalizeDate = date => date.replace(/^(\d+)-(\d+)-(\d+)$/, "$2/$1/$3");
+
+      const dt = new Date((new Date(normalizeDate(date))).getTime() + seconds);
       const dd = dt.getDate().toString().padStart(2, "0");
       const mm = (dt.getMonth() + 1).toString().padStart(2, "0");
       const yy = dt.getFullYear().toString().padStart(2, "0");
@@ -43,13 +60,23 @@ function getData($window) {
       return `${dd}-${mm}-${yy}`;
     }
 
-    function prazo(tag) {
-      if (/^\s*cita/i.test(tag)) return 30;
-      return 10;
+    /**
+     * aumentar a data a partir de dias
+     */
+    function addDays(date, days) {
+      return addSeconds(date, days * 86400000);
     }
 
-    function getDataFinal(date, days) {
-      return addSeconds(date, days * 86400000);
+    /**
+     * obter o prazo (em dias) de cada documento
+     *
+     * regras:
+     *   - para todas as "citações" são 30 dias
+     *   - para o restante são 10 dias
+     */
+    function getDeadline(tag) {
+      if (/^\s*cita/i.test(tag)) return 30;
+      return 10;
     }
 
     const reDoc = /\b(documento|etiqueta)\b/i;
@@ -61,18 +88,22 @@ function getData($window) {
 
     return data.map(row => {
       if (!row[nameDoc] || !row[nameProcesso] || !row[nameData]) {
-        $window.alert("Planilha inválida!");
+        const message = "Planilha inválida!";
 
-        throw new Error("Planilha inválida!");
+        $window.alert(message);
+        throw new Error(message);
       }
+
+      const deadline = getDeadline(row[nameDoc]);
+      const date = getDate(row[nameData]);
 
       return {
         pronto: false,
         documento: row[nameDoc],
         processo: highlight(format(row[nameProcesso])),
-        prazo: `${prazo(row[nameDoc])} dias`,
-        dataInicial: getDate(row[nameData]),
-        dataFinal: getDataFinal(getDate(row[nameData]), prazo(row[nameDoc]))
+        prazo: `${deadline} dias`,
+        dataInicial: date,
+        dataFinal: addDays(date, deadline)
       };
     });
   };

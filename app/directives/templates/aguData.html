@@ -51,39 +51,39 @@
   <!-- ETIQUETAS -->
 
   <div class="tags">
-    <label class="tags-tag">
+    <label class="tags-tag" title="ATO ORDINATÓRIO">
       <input type="checkbox" ng-model="vm.tags['ATO ORDINATÓRIO']">
       ATO ORDINATÓRIO
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="SENTENÇA">
       <input type="checkbox" ng-model="vm.tags['SENTENÇA']">
       SENTENÇA
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="DECISÃO">
       <input type="checkbox" ng-model="vm.tags['DECISÃO']">
       DECISÃO
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="DECISÃO JEF">
       <input type="checkbox" ng-model="vm.tags['DECISÃO JEF']">
       DECISÃO JEF
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="DESPACHO">
       <input type="checkbox" ng-model="vm.tags['DESPACHO']">
       DESPACHO
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="DESPACHO JEF">
       <input type="checkbox" ng-model="vm.tags['DESPACHO JEF']">
       DESPACHO JEF
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="CITAÇÃO">
       <input type="checkbox" ng-model="vm.tags['CITAÇÃO']">
       CITAÇÃO
     </label>
-    <label class="tags-tag">
+    <label class="tags-tag" title="CITAÇÃO COM AUDIÊNCIA">
       <input type="checkbox" ng-model="vm.tags['CITAÇÃO COM AUDIÊNCIA']">
       CITAÇÃO COM AUDIÊNCIA
     </label>
-    <label class="tags-tag cur-help" title="Etiquetas não identificadas.">
+    <label class="tags-tag cur-help" title="Para etiquetas não identificadas.">
       <input type="checkbox" ng-model="vm.tags['OUTROS']">
       <i>OUTROS</i>
     </label>
@@ -103,7 +103,7 @@
           Nº DO PROCESSO
           <button
             agu-clipboard
-            agu-clipboard-text="{{vm.data | search:vm.start1:vm.end1:vm.start2:vm.end2:vm.tags | processos}}"
+            agu-clipboard-text="{{vm.data | search:vm.start1:vm.end1:vm.start2:vm.end2:vm.tags | getBlock}}"
             agu-clipboard-message="Copiado!"
             class="copy-all">COPIAR BLOCO</button>
         </th>
@@ -144,7 +144,7 @@
             </p>
             <button
               agu-clipboard
-              agu-clipboard-text="{{doc.processo | numbers}}"
+              agu-clipboard-text="{{doc.processo | onlyNumbers}}"
               agu-clipboard-new-color="#d35400"
               class="copy">&#x1F4CB;</button>
           </div>

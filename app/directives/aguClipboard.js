@@ -2,7 +2,13 @@
 
 import ClipboardJS from "clipboard";
 
-export default function () {
+aguClipboard.$inject = [
+  "$window"
+];
+
+function aguClipboard(
+  $window
+) {
   return {
     restrict: "A",
     scope: {
@@ -19,7 +25,7 @@ export default function () {
 
       if (attrs.aguClipboardMessage) {
         element.on("click", () => {
-          alert(attrs.aguClipboardMessage);
+          $window.alert(attrs.aguClipboardMessage);
         });
       }
 
@@ -32,4 +38,6 @@ export default function () {
       }
     }
   };
-};
+}
+
+export default aguClipboard;
