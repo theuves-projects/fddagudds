@@ -1,8 +1,8 @@
 /**
- * para tudo
+ * tudo
  */
 * {
-  --special-color: #2980b9;
+  --color: #2980b9;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -10,15 +10,15 @@
 }
 *::selection {
   color: white;
-  background-color: var(--special-color);
+  background-color: var(--color);
 }
 *::-moz-selection {
   color: white;
-  background-color: var(--special-color);
+  background-color: var(--color);
 }
 *:focus {
   outline: none;
-  box-shadow: 0 0 2px var(--special-color);
+  box-shadow: 0 0 2px var(--color);
 }
 
 /**
@@ -40,24 +40,13 @@
   animation: rotate 0.6s infinite linear;
 }
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
 }
 
-/**
- * enquanto carrega
- */
 [ng-cloak] {
   display: none !important;
 }
-
-/**
- * quando carregado
- */
 [ng-cloak] ~ .loader {
   display: block !important;
 }
@@ -109,7 +98,7 @@ body {
 }
 
 /**
- * onde ficará os dados
+ * dados
  */
 .data {
   width: 100%;
@@ -128,7 +117,7 @@ body {
 }
 
 /**
- * tags
+ * etiquetas
  */
 .tags {
   display: flex;
@@ -164,7 +153,7 @@ body {
 }
 
 /**
- * inputs dos filtros
+ * inputs - filtros
  */
 .filters {
   display: flex;
@@ -193,7 +182,7 @@ body {
 }
 
 /**
- * tabela com os dados
+ * tabela - dados
  */
 .table {
   width: 100%;
@@ -214,7 +203,7 @@ body {
 }
 
 /**
- * para a mensagem de "nada encontrado"
+ * mensagem - nada encontrado
  */
 .notFound {
   padding: 20px 0 !important;
@@ -223,7 +212,7 @@ body {
 }
 
 /**
- * para o alinhamento dos items na célula
+ * alinhamento - célula
  */
 .cell {
   display: flex;
@@ -234,7 +223,7 @@ body {
 }
 
 /**
- * para destacar trechos nos números
+ * destaque - números
  */
 .hi {
   padding: 0 3px;
@@ -244,7 +233,7 @@ body {
 }
 
 /**
- * para destacar as etiquetas
+ * destaque - etiquetas
  */
 .tag {
   padding: 2px 4px;
@@ -254,7 +243,7 @@ body {
 }
 
 /**
- * botões para copiar
+ * botões - copiar
  */
 .copy {
   padding: 2px 4px;
@@ -279,7 +268,7 @@ body {
 }
 
 /**
- * outros estilos uteis
+ * outros estilos
  */
 .disabled {
   text-decoration: line-through;
