@@ -1,3 +1,6 @@
+/**
+ * para tudo
+ */
 * {
   --special-color: #2980b9;
   margin: 0;
@@ -18,6 +21,9 @@
   box-shadow: 0 0 2px var(--special-color);
 }
 
+/**
+ * spinner
+ */
 .loader {
   display: none;
   position: fixed;
@@ -25,7 +31,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.loader-icon {
+.loader__icon {
   width: 32px;
   height: 32px;
   border: solid 5px #999;
@@ -42,18 +48,28 @@
   }
 }
 
+/**
+ * enquanto carrega
+ */
 [ng-cloak] {
   display: none !important;
 }
+
+/**
+ * quando carregado
+ */
 [ng-cloak] ~ .loader {
   display: block !important;
 }
 
+/**
+ * base
+ */
 html,
 body,
 #main,
 #main > div,
-.drag-and-drop {
+.dragAndDrop {
   width: 100%;
   height: 100%;
 }
@@ -65,11 +81,7 @@ body {
 /**
  * drag and drop
  */
-@keyframes scale {
-  from {transform: scale(.5);}
-  to {transform: scale(1);}
-}
-.drag-and-drop {
+.dragAndDrop {
   display: block;
   position: relative;
   outline: dashed 2px #3693d4;
@@ -78,7 +90,10 @@ body {
   transition: .15s all;
   animation: scale .15s;
 }
-.drag-and-drop .text {
+.dragAndDrop--active {
+  background-color: #9ac9e9;
+}
+.dragAndDrop__text {
   color: #3693d4;
   font-size: 24px;
   font-weight: 400;
@@ -88,14 +103,15 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.drag-and-drop.agu-active {
-  background-color: #9ac9e9;
+@keyframes scale {
+  from {transform: scale(.5);}
+  to {transform: scale(1);}
 }
 
 /**
- * container
+ * onde ficará os dados
  */
-.container {
+.data {
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -104,11 +120,6 @@ body {
   border: solid 1px #ddd;
   overflow-y: auto;
   background-color: white;
-}
-
-.disabled {
-  text-decoration: line-through;
-  background-color: #eee;
 }
 
 /**
@@ -131,7 +142,7 @@ body {
   color: black;
   background-color: none;
 }
-.tags-tag {
+.tags__tag {
   padding: 2px 0;
   flex: auto;
   text-align: center;
@@ -140,64 +151,44 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.tags-tag input[type="checkbox"] {
+.tags__tag input[type="checkbox"] {
   transform: translateY(1.5px);
 }
-.tags-tag:hover {
+.tags__tag:hover {
   background-color: #f8f8f8;
 }
 
 /**
- * tag
+ * inputs dos filtros
  */
-.tag {
-  padding: 2px 4px;
-  user-select: all;
-  font-family: monospace;
-  background-color: #ffff9d;
-}
-
-/**
- * highlight
- */
-.hi {
-  padding: 0 3px;
-  font-weight: bold;
-  color: red;
-  background-color: #eee;
-}
-
-/**
- * inputs
- */
-.inputs {
+.filters {
   display: flex;
   margin-bottom: 10px;
   align-items: baseline;
 }
-.inputs .inputs-item {
-  flex: auto
-}
-.inputs * {
+.filters * {
   font-size: 14px;
 }
-.inputs .input {
+.filters__item {
+  flex: auto;
+}
+.filters__item--text {
+  flex: initial;
+}
+.filters__item--text span {
+  padding: 0 15px;
+}
+.filters__input {
   width: 100%;
   padding: 8px 16px;
   border: solid 1px #bbb;
 }
-.inputs .input::-webkit-inner-spin-button {
+.filters__input::-webkit-inner-spin-button {
   opacity: 1;
-}
-.inputs  .inputs-item-text {
-  flex: initial;
-}
-.inputs .inputs-item-text span {
-  padding: 0 15px;
 }
 
 /**
- * table
+ * tabela com os dados
  */
 .table {
   width: 100%;
@@ -213,48 +204,82 @@ body {
   padding: 10px;
   border: solid 1px #ddd;
 }
-.table .value {
-  display: flex;
-  align-items: center;
-}
-.table .value-item {
-  flex: 1;
-}
 .table tbody tr:not(.disabled):hover {
   background-color: #f8f8f8;
 }
-.table .not-found {
+
+/**
+ * para a mensagem de "nada encontrado"
+ */
+.notFound {
   padding: 20px 0 !important;
   text-align: center;
   color: red;
 }
-.table .center {
-  text-align: center;
+
+/**
+ * para o alinhamento dos items na célula
+ */
+.cell {
+  display: flex;
+  align-items: center;
+}
+.cell__value {
+  flex: 1;
 }
 
 /**
- * copy buttons
+ * para destacar trechos nos números
+ */
+.hi {
+  padding: 0 3px;
+  font-weight: bold;
+  color: red;
+  background-color: #eee;
+}
+
+/**
+ * para destacar as etiquetas
+ */
+.tag {
+  padding: 2px 4px;
+  user-select: all;
+  font-family: monospace;
+  background-color: #ffff9d;
+}
+
+/**
+ * botões para copiar
  */
 .copy {
+  padding: 2px 4px;
   font-size: 10px;
   font-weight: bold;
   font-family: "Segoe UI Symbol";
-  padding: 2px 4px;
   color: #2c3e50;
 }
-.copy-all {
+.copy--block {
   padding: 0 3px;
   font-size: 8px;
-  font-weight: bold;
-  color: #2c3e50;
 }
 
 /**
- * cursors
+ * cursor
  */
-.cur-help {
+.cur--help {
   cursor: help;
 }
-.cur-progress {
+.cur--progress {
   cursor: progress;
+}
+
+/**
+ * outros estilos uteis
+ */
+.disabled {
+  text-decoration: line-through;
+  background-color: #eee;
+}
+.center {
+  text-align: center;
 }
