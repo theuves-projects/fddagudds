@@ -120,6 +120,11 @@ body {
   border: solid 1px #ddd;
   overflow-y: auto;
   background-color: white;
+  animation: opacity 0.15s;
+}
+@keyframes opacity {
+  from {opacity: .25};
+  top {opacity: 1};
 }
 
 /**
